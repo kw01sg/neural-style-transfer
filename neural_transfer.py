@@ -5,8 +5,6 @@ import time
 from src.utils import load_image, save_image
 from src.model import VGG19Model
 
-tf.enable_eager_execution()
-
 DATA_PATH = Path('./data/')
 # Content layer where we will pull our feature maps
 CONTENT_LAYERS = ['block5_conv2']

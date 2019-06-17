@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 from PIL import Image
 
 
@@ -22,7 +23,11 @@ def load_image(image_path):
 def save_image(image_array, file_path, format=None):
     """Expect image_array to have shape of n_height * n_width * n_channel
     """
-    image = Image.fromarray(image_array, 'RGB')
+
+    # PIL fromarray takes in array of dtype 'uint8'
+    unsigned_image_array = tf.squeeze(
+        image_array, axis=0).numpy().astype('uint8')
+    image = Image.fromarray(unsigned_image_array, 'RGB')
     image.save(file_path, format=format)
     print(f'Image saved at {file_path}.')
 
