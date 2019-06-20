@@ -36,7 +36,7 @@ parser.add_argument('--content-weight', type=float, default=0.4,
 parser.add_argument('--variation-weight', type=float, default=2e4,
                     dest='variation_weight', help='variation weight')
 parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
-                    dest='learning_rate', help='variation weight')
+                    dest='learning_rate', help='learning rate for Adam optimizer')
 parser.add_argument('--epochs', type=int, default=10, help='number of epochs')
 parser.add_argument('--steps', type=int, default=100,
                     dest='steps_per_epoch', help='number of steps per epoch')
@@ -89,6 +89,6 @@ for n in range(epochs*steps_per_epoch):
                             variation_weight=variation_weight)
 
 end = time.time()
-print("Total time: {:.1f}".format(end-start))
+print("Total time: {:.1f}s".format(end-start))
 
 save_image(image, DATA_PATH / 'test.png')
