@@ -6,13 +6,15 @@ import argparse
 from src.utils import load_image, save_image
 from src.model import VGG19Model
 
-# for demo purposes
-DEMO_CONTENT = tf.keras.utils.get_file(
-    'turtle.jpg', 'https://storage.googleapis.com/download.tensorflow.org/example_images/Green_Sea_Turtle_grazing_seagrass.jpg')
-DEMO_STYLE = tf.keras.utils.get_file(
-    'kandinsky.jpg', 'https://storage.googleapis.com/download.tensorflow.org/example_images/Vassily_Kandinsky%2C_1913_-_Composition_7.jpg')
-
 DATA_PATH = Path('./data/')
+DEMO_DATA_PATH = DATA_PATH / 'demo'
+RESULTS_DATA_PATH = DATA_PATH / 'results'
+
+demo_content_path = DEMO_DATA_PATH / 'chicago.jpg' if DEMO_DATA_PATH.is_dir() \
+    else tf.keras.utils.get_file('chicago.jpg', 'https://i.imgur.com/tGnrc1a.jpg')
+
+demo_style_path = DEMO_DATA_PATH / 'candy.jpg' if DEMO_DATA_PATH.is_dir() \
+    else tf.keras.utils.get_file('candy.jpg', 'https://i.imgur.com/dRhrEEu.jpg')
 
 # Content layer where we will pull our feature maps
 CONTENT_LAYERS = ['block5_conv2']
@@ -25,9 +27,9 @@ STYLE_LAYERS = ['block1_conv1',
                 'block5_conv1']
 
 parser = argparse.ArgumentParser(description='Perform neural style transfer.')
-parser.add_argument('--content-path', type=str, default=DEMO_CONTENT,
+parser.add_argument('--content-path', type=str, default=demo_content_path,
                     dest='content_path', help='path of content image')
-parser.add_argument('--style-path', type=str, default=DEMO_STYLE,
+parser.add_argument('--style-path', type=str, default=demo_style_path,
                     dest='style_path', help='path of style image')
 parser.add_argument('--style-weight', type=float, default=1.0,
                     dest='style_weight', help='style weight')
@@ -47,7 +49,7 @@ print('Running neural style tranfer with the following parameters:')
 print()
 
 for key, value in vars(args).items():
-    print(f'\t{key}: {value}')
+    print('\t{key}: {value}'.format(key=key, value=value))
 print()
 
 content_path = args.content_path
@@ -91,4 +93,7 @@ for n in range(epochs*steps_per_epoch):
 end = time.time()
 print("Total time: {:.1f}s".format(end-start))
 
-save_image(image, DATA_PATH / 'test.png')
+if not RESULTS_DATA_PATH.is_dir():
+    RESULTS_DATA_PATH.mkdir()
+
+save_image(image, RESULTS_DATA_PATH / 'result.png')

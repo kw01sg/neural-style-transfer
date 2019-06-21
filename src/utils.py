@@ -5,7 +5,7 @@ from PIL import Image
 
 def load_image(image_path):
     max_dim = 512
-    img = tf.io.read_file(image_path)
+    img = tf.io.read_file(str(image_path))
     img = tf.image.decode_image(img, channels=3)
 
     shape = tf.cast(tf.shape(img)[:-1], tf.float32)
@@ -29,7 +29,7 @@ def save_image(image_array, file_path, format=None):
         image_array, axis=0).numpy().astype('uint8')
     image = Image.fromarray(unsigned_image_array, 'RGB')
     image.save(file_path, format=format)
-    print(f'Image saved at {file_path}.')
+    print('Image saved at {file_path}.'.format(file_path=file_path))
 
 
 def clip_image(image):
