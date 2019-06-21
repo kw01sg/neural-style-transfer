@@ -1,4 +1,4 @@
-data
+data/results/
 .vscode
 
 # .gitignore boilerplate from https://github.com/github/gitignore/blob/master/Python.gitignore
