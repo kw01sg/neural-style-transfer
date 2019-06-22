@@ -1,4 +1,5 @@
-data/results/
+data/*
+!data/demo/
 .vscode
 
 # .gitignore boilerplate from https://github.com/github/gitignore/blob/master/Python.gitignore
