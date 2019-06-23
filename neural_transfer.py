@@ -80,7 +80,6 @@ steps_per_epoch = args.steps_per_epoch
 start_time = time.time()
 
 for epoch in range(epochs):
-    print('Epoch {epoch}/{epochs}'.format(epoch=epoch, epochs=epochs))
     epoch_start_time = time.time()
     for step in range(steps_per_epoch):
         style_content_model.fit(image,
@@ -93,7 +92,11 @@ for epoch in range(epochs):
                                 style_weight=style_weight,
                                 variation_weight=variation_weight)
 
-        print_progress(current_step=step, total_steps=steps_per_epoch,
+        # printing in the loop as fit statement prints logs that causes epoch 0 statement to be separated from progress bar
+        if step == 0:
+            print('Epoch {epoch}/{epochs}'.format(epoch=epoch+1, epochs=epochs))
+
+        print_progress(current_step=step+1, total_steps=steps_per_epoch,
                        epoch_start_time=epoch_start_time)
 
 end_time = time.time()
