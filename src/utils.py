@@ -30,7 +30,7 @@ def save_image(image_array, file_path, format=None):
         image_array, axis=0).numpy().astype('uint8')
     image = Image.fromarray(unsigned_image_array, 'RGB')
     image.save(file_path, format=format)
-    print('Image saved at {file_path}.'.format(file_path=file_path))
+    print('Image saved at {file_path}.'.format(file_path=file_path.resolve()))
 
 
 def clip_image(image):
@@ -44,7 +44,7 @@ def print_progress(current_step, total_steps, epoch_start_time):
 
     percent = '{0:.2f}'.format(current_step / total_steps * 100)
     filled_length = progress_bar_length * current_step // total_steps
-    bar = fill * filled_length + '>' \
+    bar = fill * filled_length + '>' * (current_step != total_steps) \
         + '.' * (progress_bar_length - filled_length - 1)
     elapsed_time = time() - epoch_start_time
 
@@ -58,7 +58,7 @@ def print_progress(current_step, total_steps, epoch_start_time):
 
     if current_step == total_steps:
         time_per_step = elapsed_time / current_step * 1e3
-        print((', {time_per_step:.1f}ms/step').format(time_per_step=time_per_step))
+        print((' - {time_per_step:.0f}ms/step').format(time_per_step=time_per_step))
 
 
 def test_print_progress():
