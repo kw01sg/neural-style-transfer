@@ -3,7 +3,7 @@ from pathlib import Path
 import time
 import argparse
 
-from src.utils import load_image, save_image
+from src.utils import load_image, save_image, print_progress
 from src.model import VGG19Model
 
 DATA_PATH = Path('./data/')
@@ -74,24 +74,30 @@ opt = tf.keras.optimizers.Adam(
 
 style_content_model.compile(opt)
 
-start = time.time()
-
 epochs = args.epochs
 steps_per_epoch = args.steps_per_epoch
 
-for n in range(epochs*steps_per_epoch):
-    style_content_model.fit(image,
-                            content_targets=content_targets,
-                            style_targets=style_targets,
-                            content_layer_weights=[1],
-                            style_layer_weights=[
-                                1.0/len(STYLE_LAYERS)] * len(STYLE_LAYERS),
-                            content_weight=content_weight,
-                            style_weight=style_weight,
-                            variation_weight=variation_weight)
+start_time = time.time()
 
-end = time.time()
-print("Total time: {:.1f}s".format(end-start))
+for epoch in range(epochs):
+    print('Epoch {epoch}/{epochs}'.format(epoch=epoch, epochs=epochs))
+    epoch_start_time = time.time()
+    for step in range(steps_per_epoch):
+        style_content_model.fit(image,
+                                content_targets=content_targets,
+                                style_targets=style_targets,
+                                content_layer_weights=[1],
+                                style_layer_weights=[
+                                    1.0/len(STYLE_LAYERS)] * len(STYLE_LAYERS),
+                                content_weight=content_weight,
+                                style_weight=style_weight,
+                                variation_weight=variation_weight)
+
+        print_progress(current_step=step, total_steps=steps_per_epoch,
+                       epoch_start_time=epoch_start_time)
+
+end_time = time.time()
+print("Total time: {:.1f}s".format(end_time-start_time))
 
 if not RESULTS_DATA_PATH.is_dir():
     RESULTS_DATA_PATH.mkdir()
