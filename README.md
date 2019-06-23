@@ -12,7 +12,7 @@ __Make sure to install Tensorflow 2.0 by running__
 ```
 !pip install tensorflow-gpu==2.0.0-beta1
 ```
-__and that GPU is enabled for the notebook.__
+__in the first line of the notebook, and that GPU is enabled for the notebook.__
 
 # Usage
 ## Requirements
