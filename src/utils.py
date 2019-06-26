@@ -23,14 +23,22 @@ def load_image(image_path):
 
 def save_image(image_array, file_path, format=None):
     """Expect image_array to have shape of n_height * n_width * n_channel
+    file_path should be a Path object referencing a directory or file
     """
 
     # PIL fromarray takes in array of dtype 'uint8'
     unsigned_image_array = tf.squeeze(
         image_array, axis=0).numpy().astype('uint8')
     image = Image.fromarray(unsigned_image_array, 'RGB')
-    image.save(file_path, format=format)
-    print('Image saved at {file_path}.'.format(file_path=file_path.resolve()))
+
+    if file_path.is_dir():
+        image.save(file_path / 'result.png', format=format)
+        print('Image saved at {file_path}.'.format(
+            file_path=(file_path / 'result.png').resolve()))
+    else:
+        image.save(file_path, format=format)
+        print('Image saved at {file_path}.'.format(
+            file_path=file_path.resolve()))
 
 
 def clip_image(image):
