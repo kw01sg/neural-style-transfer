@@ -3,6 +3,10 @@ from pathlib import Path
 import time
 import argparse
 
+# set logging level as tf.logging is removed in tf 2.0
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 from src.utils import load_image, save_image, print_progress
 from src.model import VGG19Model
 
@@ -45,7 +49,7 @@ parser.add_argument('--steps', type=int, default=100,
 
 args = parser.parse_args()
 
-print('Running neural style tranfer with the following parameters:')
+print('Running neural style transfer with the following parameters:')
 print()
 
 for key, value in vars(args).items():
