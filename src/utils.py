@@ -66,14 +66,3 @@ def print_progress(current_step, total_steps, epoch_start_time):
     if current_step == total_steps:
         time_per_step = elapsed_time / current_step * 1e3
         print((' - {time_per_step:.0f}ms/step').format(time_per_step=time_per_step))
-
-
-def test_print_progress():
-    from time import sleep
-    items = list(range(0, 1000))
-    l = len(items)
-
-    start_time = time()
-    for i, item in enumerate(items):
-        sleep(0.01)
-        print_progress(i+1, l, start_time)
