@@ -30,4 +30,4 @@ python neural_transfer.py --content-path <path of content image> --style-path <p
 * `-lr`, `--learning-rate` : Learning rate for Adam optimizer. _Default_: `10.0`
 * `-e`, `--epochs` : Number of epochs. _Default_: `10`
 * `-steps`, `--steps` : Number of steps per epoch. _Default_: `100`
-* `-o`, `--output-file` : File name for generated image file. Path can include extension, for example `example.png`. If no extension is given, default extension is `png`. If no file name is provided, generated image will be output as `result.png`. All output files are saved in `data/results` directory.
+* `-o`, `--output-file` : File name for generated image file. Path can include extension, for example `example.png`. If no extension is given, default extension is `png`. If no file name is provided, generated image will be output as `result.png`. All output files are saved in `data/results` directory. _Default_: `result.png`
