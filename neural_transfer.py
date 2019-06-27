@@ -12,7 +12,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 DATA_PATH = Path('./data/')
 DEMO_DATA_PATH = DATA_PATH / 'demo'
-DEFAULT_OUTPUT_PATH = DATA_PATH / 'results' / 'result.png'
+RESULTS_DATA_PATH = DATA_PATH / 'results'
+DEFAULT_OUTPUT_FILE = 'result.png'
 
 demo_content_path = DEMO_DATA_PATH / 'chicago.jpg' if DEMO_DATA_PATH.is_dir() \
     else tf.keras.utils.get_file('chicago.jpg', 'https://i.imgur.com/tGnrc1a.jpg')
@@ -46,11 +47,13 @@ parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
 parser.add_argument('--epochs', type=int, default=10, help='number of epochs')
 parser.add_argument('--steps', type=int, default=100,
                     dest='steps_per_epoch', help='number of steps per epoch')
-parser.add_argument('--output-path', type=str, default=DEFAULT_OUTPUT_PATH,
-                    dest='output_path', help="""path to output generated image. 
-                        Path can include file name and extension, 
-                        for example \'./example.png\'. If no file name is provided, 
-                        generated image will be output as \'result.png\'""")
+parser.add_argument('--output-file', type=str, default=DEFAULT_OUTPUT_FILE,
+                    dest='output_file', help="""file name for generated image file. 
+                        Path can include extension, for example \'example.png\'. 
+                        If no extension is given, default extension is \'png\'
+                        If no file name is provided, generated image will be output 
+                        as \'result.png\'. All output files are saved in 
+                        \'data/results\' directory.""")
 
 args = parser.parse_args()
 
@@ -111,5 +114,8 @@ for epoch in range(epochs):
 end_time = time.time()
 print("Total time: {:.1f}s".format(end_time-start_time))
 
-output_path = Path(args.output_path)
-save_image(image, output_path)
+if not RESULTS_DATA_PATH.is_dir():
+    RESULTS_DATA_PATH.mkdir()
+
+output_file = Path(RESULTS_DATA_PATH / args.output_file)
+save_image(image, output_file)
