@@ -32,22 +32,23 @@ STYLE_LAYERS = ['block1_conv1',
                 'block5_conv1']
 
 parser = argparse.ArgumentParser(description='Perform neural style transfer.')
-parser.add_argument('--content-path', type=str, default=demo_content_path,
+parser.add_argument('-c', '--content-path', type=str, default=demo_content_path,
                     dest='content_path', help='path of content image')
-parser.add_argument('--style-path', type=str, default=demo_style_path,
+parser.add_argument('-s', '--style-path', type=str, default=demo_style_path,
                     dest='style_path', help='path of style image')
-parser.add_argument('--style-weight', type=float, default=1.0,
+parser.add_argument('-sw', '--style-weight', type=float, default=1.0,
                     dest='style_weight', help='style weight')
-parser.add_argument('--content-weight', type=float, default=0.4,
+parser.add_argument('-cw', '--content-weight', type=float, default=0.4,
                     dest='content_weight', help='content weight')
-parser.add_argument('--variation-weight', type=float, default=2e4,
+parser.add_argument('-vw', '--variation-weight', type=float, default=2e4,
                     dest='variation_weight', help='variation weight')
 parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
                     dest='learning_rate', help='learning rate for Adam optimizer')
-parser.add_argument('--epochs', type=int, default=10, help='number of epochs')
-parser.add_argument('--steps', type=int, default=100,
+parser.add_argument('-e', '--epochs', type=int,
+                    default=10, help='number of epochs')
+parser.add_argument('-steps', '--steps', type=int, default=100,
                     dest='steps_per_epoch', help='number of steps per epoch')
-parser.add_argument('--output-file', type=str, default=DEFAULT_OUTPUT_FILE,
+parser.add_argument('-o', '--output-file', type=str, default=DEFAULT_OUTPUT_FILE,
                     dest='output_file', help="""file name for generated image file. 
                         Path can include extension, for example \'example.png\'. 
                         If no extension is given, default extension is \'png\'
