@@ -1,3 +1,5 @@
+from src.model import VGG19Model
+from src.utils import load_image, save_image, print_progress
 import tensorflow as tf
 from pathlib import Path
 import time
@@ -7,8 +9,6 @@ import argparse
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-from src.utils import load_image, save_image, print_progress
-from src.model import VGG19Model
 
 DATA_PATH = Path('./data/')
 DEMO_DATA_PATH = DATA_PATH / 'demo'
@@ -110,9 +110,6 @@ for epoch in range(epochs):
 
 end_time = time.time()
 print("Total time: {:.1f}s".format(end_time-start_time))
-
-if not RESULTS_DATA_PATH.is_dir():
-    RESULTS_DATA_PATH.mkdir()
 
 output_path = Path(args.output_path)
 save_image(image, output_path)
