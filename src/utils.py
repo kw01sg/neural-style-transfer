@@ -21,16 +21,23 @@ def load_image(image_path):
     return img
 
 
-def save_image(image_array, file_path, format=None):
+def save_image(image_array, file_name):
     """Expect image_array to have shape of n_height * n_width * n_channel
+    file_name should be a Path object referencing a file
     """
 
     # PIL fromarray takes in array of dtype 'uint8'
     unsigned_image_array = tf.squeeze(
         image_array, axis=0).numpy().astype('uint8')
     image = Image.fromarray(unsigned_image_array, 'RGB')
-    image.save(file_path, format=format)
-    print('Image saved at {file_path}.'.format(file_path=file_path.resolve()))
+
+    save_path = file_name
+    if file_name.suffix == '':
+        save_path = file_name.with_suffix('.png')
+
+    image.save(save_path)
+    print('Image saved at {file_name}'.format(
+        file_name=save_path.resolve()))
 
 
 def clip_image(image):

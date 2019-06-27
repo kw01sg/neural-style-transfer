@@ -1,3 +1,5 @@
+from src.model import VGG19Model
+from src.utils import load_image, save_image, print_progress
 import tensorflow as tf
 from pathlib import Path
 import time
@@ -7,12 +9,11 @@ import argparse
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-from src.utils import load_image, save_image, print_progress
-from src.model import VGG19Model
 
 DATA_PATH = Path('./data/')
 DEMO_DATA_PATH = DATA_PATH / 'demo'
 RESULTS_DATA_PATH = DATA_PATH / 'results'
+DEFAULT_OUTPUT_FILE = 'result.png'
 
 demo_content_path = DEMO_DATA_PATH / 'chicago.jpg' if DEMO_DATA_PATH.is_dir() \
     else tf.keras.utils.get_file('chicago.jpg', 'https://i.imgur.com/tGnrc1a.jpg')
@@ -46,6 +47,13 @@ parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
 parser.add_argument('--epochs', type=int, default=10, help='number of epochs')
 parser.add_argument('--steps', type=int, default=100,
                     dest='steps_per_epoch', help='number of steps per epoch')
+parser.add_argument('--output-file', type=str, default=DEFAULT_OUTPUT_FILE,
+                    dest='output_file', help="""file name for generated image file. 
+                        Path can include extension, for example \'example.png\'. 
+                        If no extension is given, default extension is \'png\'
+                        If no file name is provided, generated image will be output 
+                        as \'result.png\'. All output files are saved in 
+                        \'data/results\' directory.""")
 
 args = parser.parse_args()
 
@@ -109,4 +117,5 @@ print("Total time: {:.1f}s".format(end_time-start_time))
 if not RESULTS_DATA_PATH.is_dir():
     RESULTS_DATA_PATH.mkdir()
 
-save_image(image, RESULTS_DATA_PATH / 'result.png')
+output_file = Path(RESULTS_DATA_PATH / args.output_file)
+save_image(image, output_file)
