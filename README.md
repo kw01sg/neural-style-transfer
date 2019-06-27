@@ -22,11 +22,12 @@ python neural_transfer.py --content-path <path of content image> --style-path <p
 
 ### Options
 * `-h`, `--help` : Display help message
-* `--content-path` : Path of content image. _Default_: `data/demo/chicago.jpg`
-* `--style-path` : Path of style image. _Default_: `data/demo/candy.jpg`
-* `--content-weight` : Content weight. _Default_: `0.4`
-* `--style-weight` : Style weight. _Default_: `1.0`
-* `--variation-weight` : Variation weight. _Default_: `2e4`
+* `-c`, `--content-path` : Path of content image. _Default_: `data/demo/chicago.jpg`
+* `-s`, `--style-path` : Path of style image. _Default_: `data/demo/candy.jpg`
+* `-sw`, `--content-weight` : Content weight. _Default_: `0.4`
+* `-cw`, `--style-weight` : Style weight. _Default_: `1.0`
+* `-vw`, `--variation-weight` : Variation weight. _Default_: `2e4`
 * `-lr`, `--learning-rate` : Learning rate for Adam optimizer. _Default_: `10.0`
-* `--epochs` : Number of epochs. _Default_: `10`
-* `--steps` : Number of steps per epoch. _Default_: `100`
+* `-e`, `--epochs` : Number of epochs. _Default_: `10`
+* `-steps`, `--steps` : Number of steps per epoch. _Default_: `100`
+* `-o`, `--output-file` : File name for generated image file. Path can include extension, for example `example.png`. If no extension is given, default extension is `png`. If no file name is provided, generated image will be output as `result.png`. All output files are saved in `data/results` directory.
