@@ -3,6 +3,13 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 
 Total variation loss has also been included as a component in the loss function. This was not covered in the paper by Gatys et al. but was inspired by Tensorflow's [implementation of neural style transfer](https://www.tensorflow.org/beta/tutorials/generative/style_transfer#total_variation_loss).
 
+# Example
+<p align='center'>
+    <img src='./data/demo/candy.jpg' height='240px' style='padding-right: 4px'/>
+    <img src='./data/demo/chicago.jpg' height='240px'/>
+    <img src='./data/results/result.png' width='608px'>
+<p>
+
 # Demo
 A demo is available on [Google Colab](https://colab.research.google.com/github/kw01sg/neural-style-transfer/blob/google-colab/google-colab-demo.ipynb) in the form of a Colab notebook.
 
