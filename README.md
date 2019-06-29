@@ -6,13 +6,13 @@ Total variation loss has also been included as a component in the loss function.
 # Demo
 A demo is available on [Google Colab](https://colab.research.google.com/github/kw01sg/neural-style-transfer/blob/google-colab/google-colab-demo.ipynb) in the form of a Colab notebook.
 
-Code used to implement the Colab notebook can be found in `google-colab-demo.ipynb`, which also includes a link to the notebook itself.
+Code for the Colab notebook can be found in `google-colab-demo.ipynb`, which also includes a link to the notebook itself.
 
 __Make sure to install Tensorflow 2.0 by running__
 ```
 !pip install tensorflow-gpu==2.0.0-beta1
 ```
-__in the first line of the notebook, and that GPU is enabled for the notebook.__
+__and that GPU is enabled for the notebook.__
 
 # Usage
 ## Requirements
