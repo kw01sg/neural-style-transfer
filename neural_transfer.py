@@ -42,6 +42,8 @@ parser.add_argument('-sw', '--style-weight', type=float, default=1.0,
                     dest='style_weight', help='style weight')
 parser.add_argument('-vw', '--variation-weight', type=float, default=2e4,
                     dest='variation_weight', help='variation weight')
+parser.add_argument('-slw', '--style-layer-weights', type=list, default=[1.0] * len(STYLE_LAYERS),
+                    dest='style_layer_weights', help='weights for layers in style image')
 parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
                     dest='learning_rate', help='learning rate for Adam optimizer')
 parser.add_argument('-e', '--epochs', type=int,
@@ -81,6 +83,8 @@ style_weight = args.style_weight
 content_weight = args.content_weight
 variation_weight = args.variation_weight
 
+style_layer_weights = args.style_layer_weights
+
 learning_rate = args.learning_rate
 opt = tf.keras.optimizers.Adam(
     learning_rate=learning_rate, beta_1=0.99, epsilon=1e-1)
@@ -99,8 +103,7 @@ for epoch in range(epochs):
                                 content_targets=content_targets,
                                 style_targets=style_targets,
                                 content_layer_weights=[1],
-                                style_layer_weights=[
-                                    1.0/len(STYLE_LAYERS)] * len(STYLE_LAYERS),
+                                style_layer_weights=style_layer_weights,
                                 content_weight=content_weight,
                                 style_weight=style_weight,
                                 variation_weight=variation_weight)

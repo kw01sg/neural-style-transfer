@@ -44,6 +44,11 @@ def clip_image(image):
     return tf.clip_by_value(image, clip_value_min=0, clip_value_max=255)
 
 
+def normalize_weights(weights):
+    weights_array = np.array(weights, dtype=np.float32)
+    return (weights_array / weights_array.sum()).tolist()
+
+
 def print_progress(current_step, total_steps, epoch_start_time):
     progress_bar_length = 50
     fill = '='

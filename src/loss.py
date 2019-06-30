@@ -1,4 +1,5 @@
 import tensorflow as tf
+from src.utils import normalize_weights
 
 
 def gram_matrix(input_tensor):
@@ -14,7 +15,7 @@ def style_content_loss(generated_outputs,
                        alpha,
                        beta):
     """
-    Calculates the weighted style and content loss between generated image and 
+    Calculates the weighted style and content loss between generated image and
     content and style image
 
     Args:
@@ -49,6 +50,7 @@ def calculate_content_loss(original_content, generated_content, content_layer_we
 
 
 def calculate_style_loss(original_style, generated_style, style_layer_weights):
+	normalized_weights = normalize_weights(style_layer_weights)
     gram_original = [gram_matrix(layer) for layer in original_style]
     gram_generated = [gram_matrix(layer) for layer in generated_style]
 
@@ -57,7 +59,7 @@ def calculate_style_loss(original_style, generated_style, style_layer_weights):
         layer = original_style[i]
         num_channel = layer.shape[-1]
         num_filter = layer.shape[1] * layer.shape[2]
-        style_loss = style_loss + (style_layer_weights[i] * tf.reduce_sum(
+        style_loss = style_loss + (normalized_weights[i] * tf.reduce_sum(
             (gram_generated[i] - gram_original[i]) ** 2) / (4 * num_channel**2 * num_filter**2))
 
     return style_loss
