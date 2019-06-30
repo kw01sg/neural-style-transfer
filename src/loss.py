@@ -50,7 +50,7 @@ def calculate_content_loss(original_content, generated_content, content_layer_we
 
 
 def calculate_style_loss(original_style, generated_style, style_layer_weights):
-	normalized_weights = normalize_weights(style_layer_weights)
+    normalized_weights = normalize_weights(style_layer_weights)
     gram_original = [gram_matrix(layer) for layer in original_style]
     gram_generated = [gram_matrix(layer) for layer in generated_style]
 
