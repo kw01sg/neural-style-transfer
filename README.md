@@ -6,7 +6,7 @@ Total variation loss has also been included as a component in the loss function.
 # Examples
 These examples are generated using default [options](#options).
 
-Images can be found in the `data/demo` directory.
+Images used can be found in the `data/demo` directory.
 
 ## Example 1
 <p align='center'>
