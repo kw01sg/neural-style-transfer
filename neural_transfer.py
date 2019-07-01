@@ -1,5 +1,5 @@
 from src.model import VGG19Model
-from src.utils import load_image, save_image, print_progress
+from src.utils import load_image, save_image, print_progress, get_white_noise_image
 import tensorflow as tf
 from pathlib import Path
 import time
@@ -45,6 +45,8 @@ parser.add_argument('-vw', '--variation-weight', type=float, default=2e4,
 parser.add_argument('-slw', '--style-layer-weights', nargs=len(STYLE_LAYERS), type=float,
                     default=[1.0] * len(STYLE_LAYERS), dest='style_layer_weights',
                     help='weights for layers in style image')
+parser.add_argument('-wn', '--white-noise-input',
+                    action='store_true', dest='white_noise_input')
 parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
                     dest='learning_rate', help='learning rate for Adam optimizer')
 parser.add_argument('-e', '--epochs', type=int,
@@ -76,7 +78,8 @@ content_image, style_image = [load_image(
 
 style_content_model = VGG19Model(CONTENT_LAYERS, STYLE_LAYERS)
 
-image = tf.Variable(content_image)
+image = tf.Variable(get_white_noise_image()
+                    ) if args.white_noise_input else tf.Variable(content_image)
 style_targets = style_content_model(style_image)['style_outputs']
 content_targets = style_content_model(content_image)['content_outputs']
 
