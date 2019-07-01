@@ -73,8 +73,7 @@ def print_progress(current_step, total_steps, epoch_start_time):
         print((' - {time_per_step:.0f}ms/step').format(time_per_step=time_per_step))
 
 
-def get_white_noise_image():
+def get_white_noise_image(shape):
     """Helper function to create white noise image"""
-    img = np.random.randint(low=0, high=256, size=(
-        512, 512, 3)).astype(np.float32)
+    img = np.random.randint(low=0, high=256, size=shape).astype(np.float32)
     return np.expand_dims(img, axis=0)
