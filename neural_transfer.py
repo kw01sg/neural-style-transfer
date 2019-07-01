@@ -79,8 +79,8 @@ content_image, style_image = [load_image(
 
 style_content_model = VGG19Model(CONTENT_LAYERS, STYLE_LAYERS)
 
-image = tf.Variable(get_white_noise_image(
-    tf.shape()[1:])) if args.white_noise_input else tf.Variable(content_image)
+image = tf.Variable(get_white_noise_image(tf.shape(content_image)[1:])) \
+    if args.white_noise_input else tf.Variable(content_image)
 style_targets = style_content_model(style_image)['style_outputs']
 content_targets = style_content_model(content_image)['content_outputs']
 
