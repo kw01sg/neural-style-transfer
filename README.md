@@ -23,7 +23,7 @@ Images used can be found in the `data/demo` directory.
 <p>
 
 # Demo
-A demo is available on [Google Colab](https://colab.research.google.com/github/kw01sg/neural-style-transfer/blob/master/google-colab-demo.ipynb) in the form of a Colab notebook.
+A demo is available on [Google Colab](https://colab.research.google.com/github/kw01sg/neural-style-transfer/blob/master/google_colab_demo.ipynb) in the form of a Colab notebook.
 
 Code for the Colab notebook can be found in `google-colab-demo.ipynb`, which also includes a link to the notebook itself.
 
