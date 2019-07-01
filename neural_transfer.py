@@ -45,8 +45,9 @@ parser.add_argument('-vw', '--variation-weight', type=float, default=2e4,
 parser.add_argument('-slw', '--style-layer-weights', nargs=len(STYLE_LAYERS), type=float,
                     default=[1.0] * len(STYLE_LAYERS), dest='style_layer_weights',
                     help='weights for layers in style image')
-parser.add_argument('-wn', '--white-noise-input',
-                    action='store_true', dest='white_noise_input')
+parser.add_argument('-wn', '--white-noise-input', action='store_true', dest='white_noise_input',
+                    help="""flag to use white noise image as initial image. 
+                        If false, content image will be used as initial image.""")
 parser.add_argument('-lr', '--learning-rate', type=float, default=10.0,
                     dest='learning_rate', help='learning rate for Adam optimizer')
 parser.add_argument('-e', '--epochs', type=int,

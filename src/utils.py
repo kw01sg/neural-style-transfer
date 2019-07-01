@@ -75,5 +75,6 @@ def print_progress(current_step, total_steps, epoch_start_time):
 
 def get_white_noise_image():
     """Helper function to create white noise image"""
-    img = np.random.randint(low=0, high=256, size=(512, 512, 3), dtype='int32')
+    img = np.random.randint(
+        low=0, high=256, size=(512, 512, 3), dtype='float32')
     return np.expand_dims(img, axis=0)
