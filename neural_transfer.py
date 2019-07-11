@@ -22,7 +22,7 @@ demo_style_path = DEMO_DATA_PATH / 'candy.jpg' if DEMO_DATA_PATH.is_dir() \
     else tf.keras.utils.get_file('candy.jpg', 'https://i.imgur.com/dRhrEEu.jpg')
 
 # Content layer where we will pull our feature maps
-CONTENT_LAYERS = ['block5_conv2']
+CONTENT_LAYERS = ['block4_conv2', 'block5_conv2']
 
 # Style layer we are interested in
 STYLE_LAYERS = ['block1_conv1',
@@ -42,6 +42,9 @@ parser.add_argument('-sw', '--style-weight', type=float, default=1.0,
                     dest='style_weight', help='style weight')
 parser.add_argument('-vw', '--variation-weight', type=float, default=2e4,
                     dest='variation_weight', help='variation weight')
+parser.add_argument('-clw', '--content-layer-weights', nargs=len(CONTENT_LAYERS), type=float,
+                    default=[1.0] * len(CONTENT_LAYERS), dest='content_layer_weights',
+                    help='weights for layers in style image')
 parser.add_argument('-slw', '--style-layer-weights', nargs=len(STYLE_LAYERS), type=float,
                     default=[1.0] * len(STYLE_LAYERS), dest='style_layer_weights',
                     help='weights for layers in style image')
@@ -88,6 +91,7 @@ style_weight = args.style_weight
 content_weight = args.content_weight
 variation_weight = args.variation_weight
 
+content_layer_weights = args.content_layer_weights
 style_layer_weights = args.style_layer_weights
 
 learning_rate = args.learning_rate
@@ -107,7 +111,7 @@ for epoch in range(epochs):
         style_content_model.fit(image,
                                 content_targets=content_targets,
                                 style_targets=style_targets,
-                                content_layer_weights=[1],
+                                content_layer_weights=content_layer_weights,
                                 style_layer_weights=style_layer_weights,
                                 content_weight=content_weight,
                                 style_weight=style_weight,
