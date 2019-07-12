@@ -45,7 +45,7 @@ def style_content_loss(generated_outputs,
 
 def calculate_content_loss(original_content, generated_content, content_layer_weights):
     normalized_weights = normalize_weights(content_layer_weights)
-    content_loss = tf.reduce_sum([tf.reduce_sum(weight * ((original - generated) ** 2)) for original, generated, weight
+    content_loss = tf.reduce_sum([tf.reduce_mean((original - generated) ** 2) * weight for original, generated, weight
                                   in zip(original_content, generated_content, normalized_weights)])
     return content_loss
 
