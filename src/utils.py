@@ -60,10 +60,6 @@ def print_progress(current_step, total_steps, epoch_start_time):
         + '.' * (progress_bar_length - filled_length - 1)
     elapsed_time = time() - epoch_start_time
 
-    # print(('\r{current_step:' + str(padding) + '}/{total_steps} [{bar}] {percent}% Complete')
-    #       .format(current_step=current_step, total_steps=total_steps,
-    #               bar=bar, percent=percent), end='')
-
     print(('\r{current_step:' + str(padding) + '}/{total_steps} [{bar}] - {elapsed_time:.0f}s')
           .format(current_step=current_step, total_steps=total_steps, bar=bar, percent=percent, elapsed_time=elapsed_time),
           end='')
