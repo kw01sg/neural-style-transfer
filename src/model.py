@@ -36,7 +36,7 @@ class VGG19Model(tf.keras.Model):
     def compile(self, optimizer):
         self.optimizer = optimizer
 
-    @tf.function()
+    # @tf.function()
     def fit(self, image, content_targets, style_targets, content_layer_weights,
             style_layer_weights, content_weight, style_weight, variation_weight):
         with tf.GradientTape() as tape:
