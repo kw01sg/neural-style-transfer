@@ -58,7 +58,7 @@ python neural_transfer.py --content-path <path of content image> --style-path <p
 * `-cw`, `--style-weight` : Style weight. _Default_: `1.0`
 * `-vw`, `--variation-weight` : Variation weight. _Default_: `2e4`
 * `-slw`, `--style-layer-weights` : Weights for individual layers in style layers. Will be normalized  before calculation of style loss. _Default_: `1 1 1 1 1`
-* `-wn`, `--white-noise-input` : Flag to use white noise image as initial image. If false, content image will be used as initial image._Default_: `False`
+* `-wn`, `--white-noise-input` : Flag to use white noise image as initial image. If false, content image will be used as initial image. _Default_: `False`
 * `-lr`, `--learning-rate` : Learning rate for Adam optimizer. _Default_: `10.0`
 * `-e`, `--epochs` : Number of epochs. _Default_: `10`
 * `-steps`, `--steps` : Number of steps per epoch. _Default_: `100`
