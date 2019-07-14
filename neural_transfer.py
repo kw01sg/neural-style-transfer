@@ -22,7 +22,7 @@ demo_style_path = DEMO_DATA_PATH / 'candy.jpg' if DEMO_DATA_PATH.is_dir() \
     else tf.keras.utils.get_file('candy.jpg', 'https://i.imgur.com/dRhrEEu.jpg')
 
 # Content layer where we will pull our feature maps
-CONTENT_LAYERS = ['block5_conv2']
+CONTENT_LAYERS = ['block4_conv2']
 
 # Style layer we are interested in
 STYLE_LAYERS = ['block1_conv1',
@@ -36,11 +36,11 @@ parser.add_argument('-c', '--content-path', type=str, default=demo_content_path,
                     dest='content_path', help='path of content image')
 parser.add_argument('-s', '--style-path', type=str, default=demo_style_path,
                     dest='style_path', help='path of style image')
-parser.add_argument('-cw', '--content-weight', type=float, default=0.4,
+parser.add_argument('-cw', '--content-weight', type=float, default=1e-3,
                     dest='content_weight', help='content weight')
 parser.add_argument('-sw', '--style-weight', type=float, default=1.0,
                     dest='style_weight', help='style weight')
-parser.add_argument('-vw', '--variation-weight', type=float, default=2e4,
+parser.add_argument('-vw', '--variation-weight', type=float, default=2e3,
                     dest='variation_weight', help='variation weight')
 parser.add_argument('-slw', '--style-layer-weights', nargs=len(STYLE_LAYERS), type=float,
                     default=[1.0] * len(STYLE_LAYERS), dest='style_layer_weights',
