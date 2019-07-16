@@ -85,23 +85,48 @@ respective feature representation in layer _l_.
 
 The content loss can be defined as the squared-error loss between the two feature representations:
 
-![](readme_src/content_loss.gif)
+<p align='center'>
+    <img src='readme_src/content_loss.gif' height='40px'/>
+</p>
 
 Content representation was matched on layer __'block4_conv2'__ of the VGG19 network.
 
 ### Style Representation
 A style representation is defined by computing the correlations between the different filter responses in each layer of the network. These feature correlations are given by the Gram matrix ![](readme_src/gram_matrix.gif), where ![](readme_src/g_sub_sup.gif) is the inner product between the vectorised feature map _i_ and _j_ in layer _l_:
 
-![](readme_src/gram_matrix_calculation.gif)
+<p align='center'>
+    <img src='readme_src/gram_matrix_calculation.gif' height='40px'/>
+</p>
 
 To generate a texture that matches the style of a given image, gradient descent is performed on a white noise image to find another image that matches the style representation of the original image. This is done by minimising the mean-squared distance between the entries of the Gram matrix from the original image and the Gram matrix of the image to be generated.
 
 Let _a_ and _x_ be the original image and the image that is generated and _A<sup>l</sup>_ and _G<sup>l</sup> be the original image and the image that is generated and total loss is then:
 
-![](readme_src/style_layer_loss.gif)
+<p align='center'>
+    <img src='readme_src/style_layer_loss.gif' height='40px'/>
+</p>
 
 and the total loss is:
 
-![](readme_src/style_loss.gif)
+<p align='center'>
+    <img src='readme_src/style_loss.gif' height='40px'/>
+</p>
 
 where _w<sub>l</sub>_ are weighting factors of the contribution of each layer to the total style loss.
+
+Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
+
+Weighting factors _w<sub>l</sub>_ is by default 1 for all layers. These weights are later normalized before calculation of style loss.
+
+## Overall Loss
+To generate images that mix the content of the content image with the style of the style image, the distance of a white noise image from the content representation of the content image and the style representation of the style image is minimized through gradient descent.
+
+Let _p_ be the content image and _a_ be the style image. The loss function can be defined as
+
+<p align='center'>
+    <img src='readme_src/total_loss.gif' height='40px'/>
+</p>
+
+where α and β are the weighting factors for content and style reconstruction respectively.
+
+The paper uses a α/β ratio of 1 x 10<sup>-3</sup> or 1 x 10<sup>-4</sup> for relative weightings of the content and style reconstruction loss. By default, a α/β ratio of 1 x 10<sup>-3</sup> is used, although both α and β are tunable options.
