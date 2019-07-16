@@ -66,15 +66,18 @@ python neural_transfer.py --content-path <path of content image> --style-path <p
 
 # Implementation Details
 ## Intuition
-Convolutional Neural Networks (CNN) consists of multiple layers of computational units that process visual information hierarchically in a feed-forward manner. Each layer of units can be understood as a collection of image filters, and each filter extracts a certain feature from the input image. Thus, the output of a given layer consists of a feature map that offers a different filtered version of the input image.
+Convolutional Neural Networks (CNN) consist of multiple layers of computational units that process visual information hierarchically in a feed-forward manner. Each layer of units can be understood as a collection of image filters, and each filter extracts a certain feature from the input image. Thus, the output of a given layer consists of a feature map that offers a different filtered version of the input image.
 
+### Content Representation
 When CNNs are trained on object recognition, they develop a representation of the image that makes object information increasingly explicit along the processing hierarchy. Along the processing hierarchy of the network, the input image is transformed into representations that increasingly care about the actual content of the image compared to its detailed pixel values. The feature responses in higher layers of the network can be defined as the content representation.
 
-A feature space originally designed to capture texture information can be used to obtain a representation of the style of an input image. This feature space is built on top of the filter responses in each layer of the network. It consists of the correlations between the different filter responses over the spatial extent of the feature maps. By including the feature correlations of multiple layers, a stationary, multi-scale representation of the input image can be obtained, which captures its texture information but not the global arrangement. This multi-scale representation can be defined as the style representation.
+### Style Representation
+A feature space originally designed to capture texture information can be used to obtain a representation of the style of an input image. It consists of the correlations between the different filter responses over the spatial extent of the feature maps. By including the feature correlations of multiple layers, a stationary, multi-scale representation of the input image can be obtained which captures its texture information but not the global arrangement. This multi-scale representation can be defined as the style representation.
 
+### Generating Stylized Images
 By separating how content and style is represented in CNNs, both representations can be independently manipulated to generate images that mix the content and style representation from two different source images. The images are synthesised by finding an image that simultaneously matches the content representation of the content image and the style representation of the respective style image. While the global arrangement of the original content image is preserved, the colours and local structures that compose the global scenery are provided by the style image. Effectively, this renders the content in the style of the style image.
 
-## Methods
+## Implementation
 A given input image _x_ is encoded in each layer of the CNN by the output of its filters. For a layer _l_ with _N<sub>l</sub>_ distinct filters, it has _N<sub>l</sub>_ feature maps each of size _M<sub>l</sub>_, where _M<sub>l</sub>_ is the height times the width of the feature map.
 
 Thus, the responses in a layer _l_ can be stored in a matrix ![](readme_src/matrix.gif) where ![](readme_src/f_sub_sup.gif) is the activation of the _i<sup>th</sup>_ filter at position _j_ in layer _l_.
@@ -118,7 +121,7 @@ Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'_
 
 Weighting factors _w<sub>l</sub>_ is by default 1 for all layers. These weights are later normalized before calculation of style loss.
 
-## Overall Loss
+### Overall Loss
 To generate images that mix the content of the content image with the style of the style image, the distance of a white noise image from the content representation of the content image and the style representation of the style image is minimized through gradient descent.
 
 Let _p_ be the content image and _a_ be the style image. The loss function can be defined as
