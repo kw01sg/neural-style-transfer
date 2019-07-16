@@ -44,8 +44,8 @@ def style_content_loss(generated_outputs,
 
 
 def calculate_content_loss(original_content, generated_content, content_layer_weights):
-    content_loss = tf.reduce_sum([weight * ((original - generated) ** 2) for original, generated, weight
-                                  in zip(original_content, generated_content, content_layer_weights)])
+    content_loss = 0.5 * tf.reduce_sum([weight * ((original - generated) ** 2) for original,
+                                        generated, weight in zip(original_content, generated_content, content_layer_weights)])
     return content_loss
 
 
