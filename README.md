@@ -10,14 +10,14 @@ Images used can be found in the `data/demo` directory.
 
 ## Example 1
 <p align='center'>
-    <img src='./data/demo/candy.jpg' height='200px' style='padding-right: 4px'/>
+    <img src='./data/demo/candy.jpg' height='200px'/>
     <img src='./data/demo/chicago.jpg' height='200px'/>
     <img src='./data/demo/chicago_candy.png' width='508px'>
 <p>
 
 ## Example 2
 <p align='center'>
-    <img src='./data/demo/udnie.jpg' height='200px' style='padding-right: 4px'/>
+    <img src='./data/demo/udnie.jpg' height='200px'/>
     <img src='./data/demo/bean.jpg' height='200px'/>
     <img src='./data/demo/bean_udnie.png' width='564px'>
 <p>
@@ -77,39 +77,46 @@ Thus, the responses in a layer _l_ can be stored in a matrix ![](readme_src/matr
 ### Content Representation
 Content representation was matched on layer __'block4_conv2'__ of the VGG19 network.
 
-Let _p_ and _x_ be the original image and the image that is generated and _P<sup>l</sup>_ and _F<sup>l</sup>_ their
-respective feature representation in layer _l_.
+Let _p_ and _x_ be the original image and the image that is generated, and _P<sup>l</sup>_ and _F<sup>l</sup>_ their respective feature representation in layer _l_.
 
 Content loss can be defined as the squared-error loss between the two feature representations:
 
-<p align='center' style='padding-top: 12px'>
+<br>
+<p align='center'>
     <img src='readme_src/content_loss.gif'/>
 </p>
+<br>
 
 ### Style Representation
+Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
+
 Style representation is defined by computing the correlations between the different filter responses in each layer of the network. These feature correlations are given by the Gram matrix ![](readme_src/gram_matrix.gif), where _G<sup>l</sup><sub>ij</sub>_ is the inner product between the vectorised feature map _i_ and _j_ in layer _l_:
 
-<p align='center' style='padding-top: 12px'>
+<br>
+<p align='center'>
     <img src='readme_src/gram_matrix_calculation.gif'/>
 </p>
+<br>
 
-Let _a_ and _x_ be the original image and the image that is generated and _A<sup>l</sup>_ and _G<sup>l</sup>_ their respective style representations in layer l.
+Let _a_ and _x_ be the original image and the image that is generated, and _A<sup>l</sup>_ and _G<sup>l</sup>_ their respective style representations in layer l.
 
 The contribution of that layer to the total style loss is then  defined as the mean-squared distance between the entries of the two Gram matrices:
 
-<p align='center' style='padding-top: 12px'>
+<br>
+<p align='center'>
     <img src='readme_src/style_layer_loss.gif'/>
 </p>
+<br>
 
 and the total loss is:
 
-<p align='center' style='padding-top: 12px'>
+<br>
+<p align='center'>
     <img src='readme_src/style_loss.gif'/>
 </p>
+<br>
 
 where _w<sub>l</sub>_ are weighting factors of the contribution of each layer to the total style loss.
-
-Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
 
 Weighting factors _w<sub>l</sub>_ is by default 1 for all layers. These weights are later normalized before calculation of style loss.
 
@@ -118,9 +125,11 @@ To generate images that mix the content of the content image with the style of t
 
 Let _p_ be the content image and _a_ be the style image. The loss function can be defined as
 
-<p align='center' style='padding-top: 12px'>
+<br>
+<p align='center''>
     <img src='readme_src/total_loss.gif'/>
 </p>
+<br>
 
 where α and β are the weighting factors for content and style reconstruction respectively.
 
