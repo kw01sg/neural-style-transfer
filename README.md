@@ -85,7 +85,6 @@ Content loss can be defined as the squared-error loss between the two feature re
 <p align='center'>
     <img src='readme_src/content_loss.gif'/>
 </p>
-<br>
 
 ### Style Representation
 Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
@@ -96,7 +95,6 @@ Style representation is defined by computing the correlations between the differ
 <p align='center'>
     <img src='readme_src/gram_matrix_calculation.gif'/>
 </p>
-<br>
 
 Let _a_ and _x_ be the original image and the image that is generated, and _A<sup>l</sup>_ and _G<sup>l</sup>_ their respective style representations in layer l.
 
@@ -106,7 +104,6 @@ The contribution of that layer to the total style loss is then  defined as the m
 <p align='center'>
     <img src='readme_src/style_layer_loss.gif'/>
 </p>
-<br>
 
 and the total loss is:
 
@@ -114,7 +111,6 @@ and the total loss is:
 <p align='center'>
     <img src='readme_src/style_loss.gif'/>
 </p>
-<br>
 
 where _w<sub>l</sub>_ are weighting factors of the contribution of each layer to the total style loss.
 
@@ -129,7 +125,6 @@ Let _p_ be the content image and _a_ be the style image. The loss function can b
 <p align='center''>
     <img src='readme_src/total_loss.gif'/>
 </p>
-<br>
 
 where α and β are the weighting factors for content and style reconstruction respectively.
 
