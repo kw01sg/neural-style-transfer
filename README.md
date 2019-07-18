@@ -1,8 +1,6 @@
 # Neural Style Transfer
 Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Artistic Style](https://arxiv.org/abs/1508.06576) (_Gatys et al._) in Tensorflow 2.0.
 
-Total variation loss has also been included as a component in the loss function. This was not covered in the paper by Gatys et al. but was inspired by Tensorflow's [implementation of neural style transfer](https://www.tensorflow.org/beta/tutorials/generative/style_transfer#total_variation_loss).
-
 # Examples
 These examples are generated using default [options](#options).
 
@@ -95,7 +93,7 @@ Style representation is defined by computing the correlations between the differ
 
 Let _a_ and _x_ be the original image and the image that is generated and _A<sup>l</sup>_ and _G<sup>l</sup>_ their respective style representations in layer l.
 
-The contribution of that layer to the total style loss is then  defined as the mean-squared distance between the entries of the two Gram matrices:
+The contribution of that layer to the total style loss is then defined as the mean-squared distance between the entries of the two Gram matrices:
 
 <p align='center'>
     <img src='readme_src/style_layer_loss.gif' style='padding-top: 12px'/>
@@ -112,6 +110,37 @@ where _w<sub>l</sub>_ are weighting factors of the contribution of each layer to
 Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
 
 Weighting factors _w<sub>l</sub>_ is by default 1 for all layers. These weights are later normalized before calculation of style loss.
+
+### Total Variation Loss
+Total variation loss has also been included as a component in the loss function. This was not covered in the paper by Gatys et al. but was inspired by Tensorflow's [implementation of neural style transfer](https://www.tensorflow.org/beta/tutorials/generative/style_transfer#total_variation_loss).
+
+Generating images that matches the content and style representations produces a lot of high frequency artifacts in the generated image. These can be decreased using an explicit regularization term on the high frequency components of the image.
+
+Let _G_ be the generated image and _h_, _w_ and _c_ be its height, width, and number of channels.
+
+Then horizontal variation is defined as:
+
+<br>
+<div align='center'>
+    <img src='readme_src/variation_loss_x.gif'/>
+</div>
+<br>
+
+while vertical variation is defined as:
+
+<br>
+<div align='center'>
+    <img src='readme_src/variation_loss_y.gif'/>
+</div>
+<br>
+
+Total variation loss:
+
+<br>
+<div align='center'>
+    <img src='readme_src/variation_loss.gif'/>
+</div>
+<br>
 
 ### Overall Loss
 To generate images that mix the content of the content image with the style of the style image, the distance of a white noise image from the content representation of the content image and the style representation of the style image is minimized through gradient descent.
