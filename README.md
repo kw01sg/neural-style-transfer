@@ -160,6 +160,8 @@ Let _p_ be the content image, _a_ be the style image and _x_ be the generated im
 </p>
 <br>
 
-where α and β are the weighting factors for content and style reconstruction respectively.
+where α and β are the weighting factors for content and style reconstruction respectively, and _w<sub>variation</sub>_ is the weighting factor for variation loss.
 
 The paper uses a α/β ratio of 1 x 10<sup>-3</sup> or 1 x 10<sup>-4</sup> for relative weightings of the content and style reconstruction loss. By default, a α/β ratio of 1 x 10<sup>-3</sup> is used, although both α and β are tunable options.
+
+A default weight of 1 x 10<sup>-4</sup> is used for _w<sub>variation</sub>_.
