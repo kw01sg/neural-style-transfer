@@ -150,9 +150,9 @@ Total variation loss:
 <br>
 
 ### Overall Loss
-To generate images that mix the content of the content image with the style of the style image, the distance of a white noise image from the content representation of the content image and the style representation of the style image is minimized through gradient descent.
+To generate images that mix the content of the content image with the style of the style image, the distance of a white noise image from the content representation of the content image and the style representation of the style image is minimized through gradient descent. Variation loss is also taken into consideration for a smoother generated image.
 
-Let _p_ be the content image and _a_ be the style image. The loss function can be defined as
+Let _p_ be the content image, _a_ be the style image and _x_ be the generated image. The loss function can be defined as
 
 <br>
 <p align='center''>
