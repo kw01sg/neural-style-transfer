@@ -80,9 +80,9 @@ Let _p_ and _x_ be the original image and the image that is generated, and _P<su
 Content loss can be defined as the squared-error loss between the two feature representations:
 
 <br>
-<p align='center'>
+<div align='center'>
     <img src='readme_src/content_loss.gif'/>
-</p>
+</div>
 <br>
 
 ### Style Representation
@@ -91,9 +91,9 @@ Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'_
 Style representation is defined by computing the correlations between the different filter responses in each layer of the network. These feature correlations are given by the Gram matrix ![](readme_src/gram_matrix.gif), where _G<sup>l</sup><sub>ij</sub>_ is the inner product between the vectorised feature map _i_ and _j_ in layer _l_:
 
 <br>
-<p align='center'>
+<div align='center'>
     <img src='readme_src/gram_matrix_calculation.gif'/>
-</p>
+</div>
 <br>
 
 Let _a_ and _x_ be the original image and the image that is generated, and _A<sup>l</sup>_ and _G<sup>l</sup>_ their respective style representations in layer l.
@@ -101,17 +101,17 @@ Let _a_ and _x_ be the original image and the image that is generated, and _A<su
 The contribution of that layer to the total style loss is then defined as the mean-squared distance between the entries of the two Gram matrices:
 
 <br>
-<p align='center'>
+<div align='center'>
     <img src='readme_src/style_layer_loss.gif'/>
-</p>
+</div>
 <br>
 
 and the total loss is:
 
 <br>
-<p align='center'>
+<div align='center'>
     <img src='readme_src/style_loss.gif'/>
-</p>
+</div>
 <br>
 
 where _w<sub>l</sub>_ are weighting factors of the contribution of each layer to the total style loss.
