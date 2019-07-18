@@ -123,7 +123,7 @@ Total variation loss has also been included as a component in the loss function.
 
 Generating images that matches the content and style representations produces a lot of high frequency artifacts in the generated image. These can be decreased using an explicit regularization term on the high frequency components of the image.
 
-Let _G_ be the generated image and _h_, _w_ and _c_ be its height, width, and number of channels.
+Let _x_ be the generated image and _h_, _w_ and _c_ be its height, width, and number of channels.
 
 Then horizontal variation is defined as:
 
