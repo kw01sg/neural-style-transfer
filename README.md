@@ -15,9 +15,9 @@ Images used can be found in the `data/demo` directory.
 
 ## Example 2
 <p align='center'>
-    <img src='./data/demo/udnie.jpg' height='200px'/>
-    <img src='./data/demo/bean.jpg' height='200px'/>
-    <img src='./data/demo/bean_udnie.png' width='564px'>
+    <img src='./data/demo/starry_night.jpg' height='200px'/>
+    <img src='./data/demo/stata.jpg' height='200px'/>
+    <img src='./data/demo/stata_starry_night.png' width='600px'>
 <p>
 
 # Demo
