@@ -40,7 +40,7 @@ parser.add_argument('-cw', '--content-weight', type=float, default=1e-3,
                     dest='content_weight', help='content weight')
 parser.add_argument('-sw', '--style-weight', type=float, default=1.0,
                     dest='style_weight', help='style weight')
-parser.add_argument('-vw', '--variation-weight', type=float, default=2e3,
+parser.add_argument('-vw', '--variation-weight', type=float, default=1e4,
                     dest='variation_weight', help='variation weight')
 parser.add_argument('-slw', '--style-layer-weights', nargs=len(STYLE_LAYERS), type=float,
                     default=[1.0] * len(STYLE_LAYERS), dest='style_layer_weights',
