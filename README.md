@@ -73,7 +73,7 @@ A given input image _x_ is encoded in each layer of the CNN by the output of its
 Thus, the responses in a layer _l_ can be stored in a matrix ![](readme_src/matrix.gif) where _F<sup>l</sup><sub>ij</sub>_ is the activation of the _i<sup>th</sup>_ filter at position _j_ in layer _l_.
 
 ### Content Representation
-Content representation was matched on layer __'block4_conv2'__ of the VGG19 network.
+Content representation is matched on layer __'block4_conv2'__ of the VGG19 network.
 
 Let _p_ and _x_ be the original image and the image that is generated, and _P<sup>l</sup>_ and _F<sup>l</sup>_ their respective feature representation (activation) in layer _l_.
 
@@ -86,7 +86,7 @@ Content loss can be defined as the squared-error loss between the two feature re
 <br>
 
 ### Style Representation
-Style representation was matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
+Style representation is matched on layers __'block1_conv1'__, __'block2_conv1'__, __'block3_conv1'__, __'block4_conv1'__ and __'block5_conv1'__ of the VGG19 network.
 
 Style representation is defined by computing the correlations between the different filter responses in each layer of the network. These feature correlations are given by the Gram matrix ![](readme_src/gram_matrix.gif), where _G<sup>l</sup><sub>ij</sub>_ is the inner product between the vectorised feature map _i_ and _j_ in layer _l_:
 
@@ -104,7 +104,7 @@ Let _a_ and _x_ be the original image and the image that is generated, and _A<su
 </div>
 <br>
 
-Total style loss is then defined as the weighted sum across all layers where style representation was matched on:
+Total style loss is then defined as the weighted sum across all layers where style representation is matched on:
 
 <br>
 <div align='center'>
@@ -114,7 +114,7 @@ Total style loss is then defined as the weighted sum across all layers where sty
 
 where _w<sub>l</sub>_ are weighting factors of the contribution of each layer to the total style loss.
 
-_w<sub>l</sub>_ was implemented to be 1 for all layers by default. These weights are later normalized before calculation of style loss.
+_w<sub>l</sub>_ is implemented to be 1 for all layers by default. These weights are later normalized before calculation of style loss.
 
 ### Total Variation Loss
 Total variation loss has also been included as a component in the total loss function. This was not covered in the paper by Gatys et al. but was inspired by Tensorflow's [implementation of neural style transfer](https://www.tensorflow.org/beta/tutorials/generative/style_transfer#total_variation_loss).
