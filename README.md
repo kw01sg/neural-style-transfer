@@ -169,4 +169,4 @@ Another implementation detail that is different from the paper is the initial im
 To use a white noise image as the initial image, the `-wn` or the `--white-noise-input` option can be used. A larger learning rate and number of epochs/steps is also advised.
 
 # License
-This project is licensed under the [MIT License](https://github/kw01sg/neural-style-transfer/blob/master/LICENSE.md).
+This project is licensed under the [MIT License](https://github.com/kw01sg/neural-style-transfer/blob/master/LICENSE.md).
