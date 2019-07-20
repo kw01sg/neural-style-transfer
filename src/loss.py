@@ -57,10 +57,11 @@ def calculate_style_loss(original_style, generated_style, style_layer_weights):
     style_loss = 0
     for i in range(len(original_style)):
         layer = original_style[i]
+        # Layers have shape of n_batch * n_activation_height * n_activation_width * n_channel
         num_channel = layer.shape[-1]
-        num_filter = layer.shape[1] * layer.shape[2]
+        activation_size = layer.shape[1] * layer.shape[2]
         style_loss = style_loss + (normalized_weights[i] * tf.reduce_sum(
-            (gram_generated[i] - gram_original[i]) ** 2) / (4 * num_channel**2 * num_filter**2))
+            (gram_generated[i] - gram_original[i]) ** 2) / (4 * num_channel**2 * activation_size**2))
 
     return style_loss
 
