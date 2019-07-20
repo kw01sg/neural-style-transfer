@@ -148,7 +148,7 @@ Total variation loss:
 <br>
 
 ### Overall Loss
-To generate images that mix the content of the content image with the style of the style image, the distance of a white noise image from the content representation of the content image and the style representation of the style image in multiple layers is minimized through gradient descent. Variation loss is also taken into consideration for a smoother generated image.
+To generate images that mix the content of the content image with the style of the style image, the distance of an initial image from the content representation of the content image and the style representation of the style image in multiple layers is minimized through gradient descent. Variation loss is also taken into consideration for a smoother generated image.
 
 Let _p_ be the content image, _a_ be the style image and _x_ be the generated image. The loss function can be defined as
 
@@ -160,6 +160,10 @@ Let _p_ be the content image, _a_ be the style image and _x_ be the generated im
 
 where α and β are the weighting factors for content and style reconstruction respectively, and _w<sub>variation</sub>_ is the weighting factor for variation loss.
 
-The paper uses a α/β ratio of 1 x 10<sup>-3</sup> or 1 x 10<sup>-4</sup> for relative weightings of the content and style reconstruction loss. This implementation used a α/β ratio of 1 x 10<sup>-3</sup> by default, although both α and β are tunable options.
+The paper uses a α/β ratio of 1 x 10<sup>-3</sup> or 1 x 10<sup>-4</sup> for relative weightings of the content and style reconstruction loss. This implementation uses a α/β ratio of 1 x 10<sup>-3</sup> by default, although both α and β are tunable options.
 
-For _w<sub>variation</sub>_, a default weight of 1 x 10<sup>-4</sup> was used .
+For _w<sub>variation</sub>_, a default weight of 1 x 10<sup>-4</sup> is used.
+
+Another implementation detail that is different from the paper is the initial image to perform gradient descent on. The paper uses a white noise image while this implementation uses the content image as the initial image by default as it offers a faster option to apply the style of the style image to the content image.
+
+To use a white noise image as the initial image, the `-wn` or the `--white-noise-input` option can be used. A larger learning rate and number of epochs/steps is also advised.
