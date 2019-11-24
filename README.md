@@ -8,16 +8,16 @@ Images used can be found in the `data/demo` directory.
 
 ## Example 1
 <p align='center'>
-    <img src='./data/demo/candy.jpg' height='200px'/>
-    <img src='./data/demo/chicago.jpg' height='200px'/>
-    <img src='./data/demo/chicago_candy.png' width='508px'>
+<img src='./data/demo/candy.jpg' height='200px'/>
+<img src='./data/demo/chicago.jpg' height='200px'/>
+<img src='./data/demo/chicago_candy.png' width='508px'>
 <p>
 
 ## Example 2
 <p align='center'>
-    <img src='./data/demo/starry_night.jpg' height='168px'/>
-    <img src='./data/demo/stata.jpg' height='168px'/>
-    <img src='./data/demo/stata_starry_night.png' width='508px'>
+<img src='./data/demo/starry_night.jpg' height='168px'/>
+<img src='./data/demo/stata.jpg' height='168px'/>
+<img src='./data/demo/stata_starry_night.png' width='508px'>
 <p>
 
 # Demo
@@ -81,7 +81,7 @@ Content loss can be defined as the squared-error loss between the two feature re
 
 <br>
 <div align='center'>
-    <img src='readme_src/content_loss.gif'/>
+<img src='readme_src/content_loss.gif'/>
 </div>
 <br>
 
@@ -92,7 +92,7 @@ Style representation is defined by computing the correlations between the differ
 
 <br>
 <div align='center'>
-    <img src='readme_src/gram_matrix_calculation.gif'/>
+<img src='readme_src/gram_matrix_calculation.gif'/>
 </div>
 <br>
 
@@ -100,7 +100,7 @@ Let _a_ and _x_ be the original image and the image that is generated, and _A<su
 
 <br>
 <div align='center'>
-    <img src='readme_src/style_layer_loss.gif'/>
+<img src='readme_src/style_layer_loss.gif'/>
 </div>
 <br>
 
@@ -108,7 +108,7 @@ Total style loss is then defined as the weighted sum across all layers where sty
 
 <br>
 <div align='center'>
-    <img src='readme_src/style_loss.gif'/>
+<img src='readme_src/style_loss.gif'/>
 </div>
 <br>
 
@@ -127,7 +127,7 @@ Then horizontal variation is defined as:
 
 <br>
 <div align='center'>
-    <img src='readme_src/variation_loss_x.gif'/>
+<img src='readme_src/variation_loss_x.gif'/>
 </div>
 <br>
 
@@ -135,7 +135,7 @@ while vertical variation is defined as:
 
 <br>
 <div align='center'>
-    <img src='readme_src/variation_loss_y.gif'/>
+<img src='readme_src/variation_loss_y.gif'/>
 </div>
 <br>
 
@@ -143,7 +143,7 @@ Total variation loss:
 
 <br>
 <div align='center'>
-    <img src='readme_src/variation_loss.gif'/>
+<img src='readme_src/variation_loss.gif'/>
 </div>
 <br>
 
@@ -154,7 +154,7 @@ Let _p_ be the content image, _a_ be the style image and _x_ be the generated im
 
 <br>
 <p align='center''>
-    <img src='readme_src/total_loss.gif'/>
+<img src='readme_src/total_loss.gif'/>
 </p>
 <br>
 
