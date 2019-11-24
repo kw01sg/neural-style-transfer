@@ -153,7 +153,7 @@ To generate images that mix the content of the content image with the style of t
 Let _p_ be the content image, _a_ be the style image and _x_ be the generated image. The loss function can be defined as
 
 <br>
-<p align='center''>
+<p align='center'>
 <img src='readme_src/total_loss.gif'/>
 </p>
 <br>
