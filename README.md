@@ -10,14 +10,14 @@ Images used can be found in the `data/demo` directory.
 <p align='center'>
 <img src='./data/demo/candy.jpg' height='200px'/>
 <img src='./data/demo/chicago.jpg' height='200px'/>
-<img src='./data/demo/chicago_candy.png' width='508px'>
+<img src='./data/demo/chicago_candy.png' width='508px'/>
 </p>
 
 ## Example 2
 <p align='center'>
 <img src='./data/demo/starry_night.jpg' height='168px'/>
 <img src='./data/demo/stata.jpg' height='168px'/>
-<img src='./data/demo/stata_starry_night.png' width='508px'>
+<img src='./data/demo/stata_starry_night.png' width='508px'/>
 </p>
 
 # Demo
